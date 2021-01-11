@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影播放</title>
+    <script>
+       // window.location.href="/movie/?num=2"
+    </script>
+    <style>
+         /*解决页面浮动后的塌陷问题*/
+        .clearfix{
+                zoom:1;
+        }
+        .clearfix:after{
+                content: "";display: block;visibility: hidden;line-height: 0;clear: both;
+        }
+
+        body,div{
+            margin:0 auto;
+        }
+
+
+        div{
+            border:1px solid gray;
+            width:750px;
+            text-align: center;
+        }
+
+
+        ul{
+            list-style-type: none;
+            display: inline-block;
+
+        }
+
+
+
+        #header li{
+            float: left;
+            margin-left:10px;
+            font-size:16px;
+            font-family: '微软雅黑';
+            color: #666666;
+
+
+        }
+        #header li:hover{
+            cursor: pointer;
+            background:blue;
+            color: white;
+        }
+
+
+
+
+        #content li{
+            float: left;
+            display: inline;
+            margin-right:15px;
+            text-align: center;
+            height:225px;
+            overflow: hidden;
+            padding-top:10px;
+            padding-bottom:5px;
+
+        }
+        #content h1{
+            font-size:14px;
+            margin:0;
+
+
+        }
+
+        .tip{
+            display: block;
+            font-size:12px;
+        }
+
+       .h1,.tip{
+            width:110px;
+           text-align: center;
+        }
+
+        #content ul{
+            /*去除ul的内边距和外边距*/
+            margin:0;
+            padding:0;
+
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="header" class="clearfix">
+    <ul class="clearfix">
+        <li>首页</li>
+        <li>电影</li>
+        <li>电视剧</li>
+        <li>动漫</li>
+        <li>综艺</li>
+        <li>音乐</li>
+        <li>MV</li>
+        <li>视频</li>
+        <li>短片</li>
+        <li>公开课</li>
+    </ul>
+</div>
+<div id="content">
+    <ul class="clearfix">
+{% for line in perpage_data %}
+        <li>
+            <a href="{{ line.mlink }}"><img src="{{ line.mimg }}"/></a>
+            <h1>{{ line.mname }}</h1>
+            <span>{{ line.mdesc }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    <a href="/movie/?num=1">首页</a>
+    {% if perpage_data.has_previous%}
+    <a href="/movie/?num={{ perpage_data.previous_page_number }}">上一页</a>
+    {% endif %}
+
+    {% for line in pagelist %}
+        {% if currentPage == line %}
+        <a href="/movie/?num={{ line }}" style="font-size: 28px; color:red">{{ line }}</a>&emsp;
+        {% else %}
+        <a href="/movie/?num={{ line }}">{{ line }}</a>&emsp;
+        {% endif %}
+    {% endfor %}
+
+    {% if perpage_data.has_next%}
+    <a href="/movie/?num={{ perpage_data.next_page_number }}">下一页</a>
+    {% endif %}
+  <a href="/movie/?num={{ paginator.num_pages }}">末页</a>
+
+</div>
+</body>
+</html>

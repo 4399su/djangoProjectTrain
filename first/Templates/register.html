@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<table border="1" align="center">
+    <form action="/index/register/" method="post">
+        {%csrf_token%}
+        <p>
+            <lable for="uname">用&emsp;&emsp;户</lable><input type="text" name="name" id="uname"/>
+        </p>
+        <p>
+            <lable for="pwd1">密&emsp;&emsp;码</lable><input type="text" name="password1" id="pwd1"/>
+        </p>
+        <p>
+            <lable for="pwd2">重复密码</lable><input type="text" name="password2" id="pwd2"/>
+        </p>
+        <p>
+            <input type="submit" value="注册">
+        </p>
+    </form>
+</table>
+</body>
+</html>
