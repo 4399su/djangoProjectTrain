@@ -19,5 +19,6 @@ from first import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', include('first.urls')),
-    path('movie/', include('showMovie.urls'))
+    path('movie/', include('showMovie.urls')),
+    path('sql/', include('SQLtest.urls'))
 ]
