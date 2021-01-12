@@ -78,6 +78,13 @@ def showSQL(request):
     # 1. 获取对象，delete对象
     # 2. Movie.objects.filter(条件).delete()
 
+    # 左连接
+
+    # 右连接
+
+    # 一对一 OneToOneField
+    # 一对多 ForeighKey
+    # 多对多 ManyToMany
     return render(request, "showSQL.html",
                   {"searchAll_list": searchAll_list, "number": number, "Id_150": Id_150, "Id_150copy": Id_150copy,
                    "first_data": first_data, "last_data": last_data, "slice_list": slice_list,
