@@ -14,6 +14,8 @@ import pymysql  #配置MySQL
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.core.management import templates
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'first',
     'showMovie',
     'SQLtest',
+    'Register',
 ]
 
 MIDDLEWARE = [
@@ -81,9 +84,9 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
-        'NAME': 's',         # 你要存储数据的库名，事先要创建之
+        'NAME': 'sfcc',         # 你要存储数据的库名，事先要创建之
         'USER': 'root',         # 数据库用户名
-        'PASSWORD': '123456',     # 密码
+        'PASSWORD': 's123123',     # 密码
         'HOST': 'localhost',    # 主机
         'PORT': '3306',         # 数据库使用的端口
     }
