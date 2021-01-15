@@ -124,6 +124,8 @@ def showSQL(request):
     # 逆向查询
     # Teacher.objects.first().cour.all()
 
+    # 可变参数和解包参数区别
+    # 为形参和实参的区别
     return render(request, "showSQL.html",
                   {"searchAll_list": searchAll_list, "number": number, "Id_150": Id_150, "Id_150copy": Id_150copy,
                    "first_data": first_data, "last_data": last_data, "slice_list": slice_list,
