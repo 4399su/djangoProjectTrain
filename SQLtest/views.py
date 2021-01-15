@@ -70,7 +70,7 @@ def showSQL(request):
     # 1.创建对象,对象.save
     # 2.Movie.objects.create(属性赋值)
 
-    # 修改
+    # 修改某一字段
     # 1.获取对象，修改某一字段，对象.save
     # 2.Movie.objects.filter(条件).update(更新)
 
@@ -83,8 +83,47 @@ def showSQL(request):
     # 右连接
 
     # 一对一 OneToOneField
-    # 一对多 ForeighKey
-    # 多对多 ManyToMany
+    # 例子 class student (models.Model):
+    # sno = models.AutoFiled(primary=true,)
+    # sname = models.CharField(max_length=30)
+
+    # class Scard(models.Model):
+    # st = models.OneToOneField(student,primary=True,on_delete=models.CASCADE)
+    # major = models.CharField(maxlength = 30,unique=True)
+    # 正向查询 student.objects.first().Scard
+    # 逆向查询 Scard.objects.first().st
+
+    # 一对多 ForeignKey
+    # class Student(models.Model):
+    # sno =models.AutoField(primary_key=True)
+    # sname = models.CharField(max_length=30)
+    # cno = models.ForeignKey(Clazz,on_delete=models.CASCADE)
+    # def __str__(self):
+    # return 'Student name%s'%self.sname
+    # 班级 主表
+    # class Clazz(models.Model):
+    # cnumber = models.AutoField(primary_key=True)
+    # cname = models.CharField(max_length=30)
+    # Clazz.objects.first().student_set.all() 正向查询
+    # Student.objects.first().cno   逆向查询
+
+    # 多对多 ManyToManyField
+    # 课程表
+    # class Course(models.Model):
+    # course_id= models.AutoField(primary_key=True)
+    # course_name= models.CharField(max_length=30,unique=True)
+    # 教师表
+    # class Teacher(models.Model):
+    # tid = models.AutoField(primary_key=True)
+    # tname= models.CharField(max_length=30,unique=True)
+    # cour = models.ManyToManyField(Course,on_delete=CASCADE)
+    # 添加关系
+    # t.cour.add(cour1,cour2)
+    # 正向查询
+    # Course.objects.first().teacher_set.all()
+    # 逆向查询
+    # Teacher.objects.first().cour.all()
+
     return render(request, "showSQL.html",
                   {"searchAll_list": searchAll_list, "number": number, "Id_150": Id_150, "Id_150copy": Id_150copy,
                    "first_data": first_data, "last_data": last_data, "slice_list": slice_list,
