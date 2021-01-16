@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 
@@ -13,5 +14,21 @@ def show(request):
         coname = request.POST.getlist("coname", [])
 
         # 注册到数据库
-        registerStu(sname, cname, *coname)
-        return None
+        flag = registerStu(sname, cname, *coname)
+        if flag:
+            return HttpResponse("注册成功")
+        else:
+            return HttpResponse("注册失败")
+
+
+def showall(request):
+    cl = Clazz.objects.all()
+    count = 0
+    return render(request, 'showall.html', {"cl": cl})
+
+
+def showdetail(request):
+    clnumber = request.GET.get('clnumber')
+    clnumber = int(clnumber)
+    st = Clazz.objects.filter(clnumber=clnumber).student_set.all()
+    return render(request, 'showdetail.html', {"st": st})

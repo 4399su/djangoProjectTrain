@@ -21,5 +21,5 @@ urlpatterns = [
     path('index/', include('first.urls')),
     path('movie/', include('showMovie.urls')),
     path('sql/', include('SQLtest.urls')),
-    path('register/', include('Register.urls'))
+    path('', include('Register.urls'))
 ]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示学生详细信息</title>
+</head>
+<body>
+<table border="1" align="center">
+    <tr>
+    <th>编号</th>
+    <th>学生姓名</th>
+    <th>操作</th>
+    </tr>
+
+    {% for line in cl%}
+        <tr>
+            <td>{{ line.clnumber }}</td>
+            <td>{{ line.clname }}</td>
+            <td><a href="/showall/detail/?clnumber={{ line.clnumber }}">详情</a></td>
+        </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

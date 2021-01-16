@@ -5,7 +5,9 @@
     <title>注册页面</title>
 </head>
 <body>
+
 <form action="/register/" method="post">
+    {%csrf_token%}
 <p><label for="sname">姓名:  </label>&emsp;
     <input type="text" name="sname" id="name"/>
 </p>

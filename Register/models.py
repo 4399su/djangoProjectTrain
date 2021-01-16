@@ -22,17 +22,17 @@ class Student(models.Model):
 
 def getCls(cname):
     try:
-        cl = Clazz.objects.get(cname=cname)
+        cl = Clazz.objects.get(clname=cname)
     except Clazz.DoesNotExist:
-        cl = Clazz.objects.create(cname=cname)
+        cl = Clazz.objects.create(clname=cname)
     return cl
 
 
-def getStu(sname, cno):
+def getStu(stname, cl):
     try:
-        st = Student.objects.get(sname=sname, cno=cno)
+        st = Student.objects.get(sname=stname)
     except Student.DoesNotExist:
-        st = Student.objects.get(sname=sname, cno=cno)
+        st = Student.objects.create(sname=stname, cno=cl)
     return st
 
 
@@ -42,18 +42,19 @@ def getcourseList(*coname):
         try:
             c = Course.objects.get(coname=line)
         except Course.DoesNotExist:
-            c = Course.objects.craete(coname=line)
+            c = Course.objects.create(coname=line)
         courseList.append(c)
     return courseList
 
 
-def registerStu(sname, cname, *coname):
+def registerStu(stname, cname, *coname):
     # 1.获取班级对象
     cl = getCls(cname)
 
     # 插入学生姓名
-    st = getStu(sname, cl.cno)
+    st = getStu(stname, cl)
 
-    # 获取课程对象
+    # 插入课程对象
     co = getcourseList(*coname)
-    st.cour.add(co)
+    st.cour.add(*co)
+    return 1
