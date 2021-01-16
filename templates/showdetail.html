@@ -9,14 +9,20 @@
     <tr>
     <th>编号</th>
     <th>学生姓名</th>
-    <th>操作</th>
+    <th>班级名称</th>
+        <th>课程名称</th>
     </tr>
 
-    {% for line in cl%}
+    {% for line in st%}
         <tr>
-            <td>{{ line.clnumber }}</td>
-            <td>{{ line.clname }}</td>
-            <td><a href="/showall/detail/?clnumber={{ line.clnumber }}">详情</a></td>
+            <td>{{ line.cno.clnumber }}</td>
+            <td>{{ line.sname }}</td>
+            <td>{{ line.cno.clname }}</td>
+         <td>1
+        {% for co in st.cour.all%}
+               {{ co.coname}}1
+        {% endfor %}
+        </td>
         </tr>
     {% endfor %}
 

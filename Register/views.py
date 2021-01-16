@@ -30,5 +30,5 @@ def showall(request):
 def showdetail(request):
     clnumber = request.GET.get('clnumber')
     clnumber = int(clnumber)
-    st = Clazz.objects.filter(clnumber=clnumber).student_set.all()
+    st = Clazz.objects.get(clnumber=clnumber).student_set.all()
     return render(request, 'showdetail.html', {"st": st})
