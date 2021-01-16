@@ -116,7 +116,7 @@ def showSQL(request):
     # class Teacher(models.Model):
     # tid = models.AutoField(primary_key=True)
     # tname= models.CharField(max_length=30,unique=True)
-    # cour = models.ManyToManyField(Course,on_delete=CASCADE)
+    # cour = models.ManyToManyField(Course,on_delete=model.CASCADE)
     # 添加关系
     # t.cour.add(cour1,cour2)
     # 正向查询
