@@ -20,11 +20,40 @@ class Student(models.Model):
     cour = models.ManyToManyField(Course)
 
 
-def registerStu(sname, cname, *coname):
-    # 插入班级
-    cl = Clazz.objects.create(cname="cname")
-    # 插入学生姓名
-    st = Student.objects.create(sname="sname")
-    # 插入课程名称
+def getCls(cname):
+    try:
+        cl = Clazz.objects.get(cname=cname)
+    except Clazz.DoesNotExist:
+        cl = Clazz.objects.create(cname=cname)
+    return cl
+
+
+def getStu(sname, cno):
+    try:
+        st = Student.objects.get(sname=sname, cno=cno)
+    except Student.DoesNotExist:
+        st = Student.objects.get(sname=sname, cno=cno)
+    return st
+
+
+def getcourseList(*coname):
+    courseList = []
     for line in coname:
-        Student.objects.create(sname="sname")
+        try:
+            c = Course.objects.get(coname=line)
+        except Course.DoesNotExist:
+            c = Course.objects.craete(coname=line)
+        courseList.append(c)
+    return courseList
+
+
+def registerStu(sname, cname, *coname):
+    # 1.获取班级对象
+    cl = getCls(cname)
+
+    # 插入学生姓名
+    st = getStu(sname, cl.cno)
+
+    # 获取课程对象
+    co = getcourseList(*coname)
+    st.cour.add(co)
